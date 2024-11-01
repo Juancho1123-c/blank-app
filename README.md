@@ -23,7 +23,7 @@ def obtener_intentos(largo):
     intentos = []
     st.write("Introduce tu secuencia:")
     for i in range(largo):
-        luz = st.number_input(f"Luz {i+1}", min_value=1, max_value=LUZ_TOTAL, step=1)
+        luz = st.number_input(f"Luz {i+1}", min_value=1, max_value=LUZ_TOTAL, step=1, key=f"intento_{i}")
         intentos.append(int(luz))
     return intentos
 
@@ -38,7 +38,7 @@ def jugar_clasico():
         secuencia = generar_secuencia(largo)
         mostrar_secuencia(secuencia)
         intentos = obtener_intentos(largo)
-        
+
         if verificar_secuencia(secuencia, intentos):
             st.success("¡Correcto! La secuencia se alarga.")
             largo += 1  # La secuencia crece
@@ -53,7 +53,7 @@ def jugar_desafio():
         secuencia = generar_secuencia(largo)
         mostrar_secuencia(secuencia)
         intentos = obtener_intentos(largo)
-        
+
         if verificar_secuencia(secuencia, intentos):
             st.success("¡Correcto! Aumenta la dificultad.")
             largo += 1  # La secuencia crece en dificultad
@@ -65,13 +65,13 @@ def jugar_competitivo():
     """Modo Competitivo: dos jugadores se alternan turnos en la misma secuencia."""
     largo = 3  # Comienza con una secuencia de 3
     turno = 1  # Jugador 1 inicia
-    
+
     while True:
         st.write(f"\nTurno del Jugador {turno}")
         secuencia = generar_secuencia(largo)
         mostrar_secuencia(secuencia)
         intentos = obtener_intentos(largo)
-        
+
         if verificar_secuencia(secuencia, intentos):
             st.success("¡Correcto!")
             largo += 1  # La secuencia crece
@@ -82,7 +82,6 @@ def jugar_competitivo():
 
 def main():
     st.title("Bienvenido a 'Simón Dice'")
-
     modo = st.selectbox("Selecciona un modo de juego:", MODOS)
 
     if st.button("Iniciar Juego"):
@@ -95,3 +94,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
